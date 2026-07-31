@@ -15,25 +15,30 @@ X = data["text"]
 y = data["sentiment"]
 
 
-# Split data
+# Split dataset
 X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
+    X,
+    y,
+    test_size=0.25,
+    random_state=42,
+    stratify=y
 )
 
 
-# Create ML pipeline
+# ML Pipeline
 model = Pipeline([
     ("tfidf", TfidfVectorizer()),
-    ("classifier", LogisticRegression())
+    ("classifier", LogisticRegression(max_iter=1000))
 ])
 
 
-# Train model
+# Train
 model.fit(X_train, y_train)
 
 
-# Test accuracy
+# Accuracy
 prediction = model.predict(X_test)
+
 accuracy = accuracy_score(y_test, prediction)
 
 print("Model Accuracy:", accuracy)
@@ -43,4 +48,4 @@ print("Model Accuracy:", accuracy)
 with open("sentiment_model.pkl", "wb") as file:
     pickle.dump(model, file)
 
-print("Model saved successfully!")
+print("New sentiment_model.pkl created successfully!")
