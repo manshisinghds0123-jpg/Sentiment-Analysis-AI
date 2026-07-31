@@ -8,7 +8,7 @@ The project combines an ML model, Flask REST API backend, and a modern interacti
 
 Frontend Application:
 
-https://sentient-chi.vercel.app/listen
+https://sentient-chi.vercel.app
 
 Backend API:
 
